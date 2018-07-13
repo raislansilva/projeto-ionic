@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 /**
  * Generated class for the AboutPage page.
@@ -9,8 +10,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  */
 
 @IonicPage({
-  segment:'custom-about/:id',
-  defaultHistory:['HomePage']
+  segment: 'custom-about/:id',
+  defaultHistory: ['HomePage']
 })
 @Component({
   selector: 'page-about',
@@ -18,11 +19,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AboutPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  formLogin: FormGroup;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public formBuilder: FormBuilder
+  ) {
+    this.formLogin = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      username: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]]
+    })
+
   }
 
   ionViewDidLoad() {
     console.log('Register id:', this.navParams.get('id'));
+  }
+
+  onSubmit(){
+    console.log(this.formLogin.value)
   }
 
 }
