@@ -40,7 +40,7 @@ export class AboutPage {
   }
 
   onSubmit(){
-    console.log(this.formLogin.value)
+   console.log(this.formLogin.value)
   }
 
 }
